@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s  # Thời gian Prometheus thu thập dữ liệu (mỗi 15 giây)
+
+scrape_configs:
+  - job_name: 'flask_app'
+    static_configs:
+      - targets: ['web:5000']  # Giả sử container ứng dụng Flask của bạn được đặt tên là "web" và chạy ở cổng 5000
+
+  # Nếu bạn muốn thu thập metrics từ cAdvisor (để theo dõi container Docker)
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+

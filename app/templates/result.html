@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trang Chủ Flask</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 10px;
+            width: 100%;
+        }
+        .result-card {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .result-item {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-success">Tìm kiếm</h2>
+        <form method="GET" action="{{ url_for('handle_get') }}">
+            <input type="text" name="query" class="form-control" placeholder="Nhập từ khóa...">
+            <button type="submit" class="btn btn-success">Tìm kiếm</button>
+        </form>
+        <div class="card result-card">
+            <div class="card-header bg-primary text-white">Kết Quả</div>
+            <div class="card-body result-item">
+                {{ result |  tojson(indent=2) | safe }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
